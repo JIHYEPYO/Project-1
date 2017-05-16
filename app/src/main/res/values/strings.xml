@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Project#1</string>
+    <string name="ShowFavorites">1. 관심사이트 보기</string>
+    <string name="RegisterFavorites">2. 관심사이트 등록</string>
+    <string name="RemoveFavorites">3. 관심사이트 삭제</string>
+</resources>
