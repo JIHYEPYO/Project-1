@@ -24,6 +24,21 @@ public class FavoritesActivity extends AppCompatActivity {
         pager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager()));
         PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabStrip.setViewPager(pager);
+
+        String str = getIntent().getStringExtra("particularFragment");
+        if (str != null) {
+            switch (str.toString()) {
+                case "showFavorites":
+                    setPager(0);
+                    break;
+                case "registerFavorites":
+                    setPager(1);
+                    break;
+                case "removeFavorites":
+                    setPager(2);
+                    break;
+            }
+        }
     }
 
     public static void setPager(int index) {

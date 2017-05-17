@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    static final int REQUEST_CODE = 1;
+
     EditText editTextURL;
     Button buttonSearch;
     WebView webView;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSearch = (Button) findViewById(R.id.ButtonSearch);
         webView = (WebView) findViewById(R.id.WebView);
 
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -45,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
         set.setJavaScriptEnabled(true);
         set.setBuiltInZoomControls(true);
 
-        flag=false;
+        flag = false;
 
-        handler = new Handler(){
+        handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if(msg.what==0){
-                    flag=false;
+                if (msg.what == 0) {
+                    flag = false;
                 }
             }
         };
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             if (webView.canGoBack()) {
                 webView.goBack();
                 return false;
-            }else {
+            } else {
                 if (!flag) {
                     Toast.makeText(this, "'뒤로가기' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_LONG).show();
                     flag = true;
@@ -95,15 +97,31 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.showFavorites:
-                startActivity(new Intent(this, FavoritesActivity.class));
+                Intent intentShow = new Intent(MainActivity.this, FavoritesActivity.class);
+                intentShow.putExtra("particularFragment", "showFavorites");
+                startActivityForResult(intentShow, REQUEST_CODE);
                 return true;
             case R.id.registerFavorites:
-                startActivity(new Intent(this, FavoritesActivity.class));
+                Intent intentRegister = new Intent(MainActivity.this, FavoritesActivity.class);
+                intentRegister.putExtra("particularFragment", "registerFavorites");
+                startActivity(intentRegister);
                 return true;
             case R.id.removeFavorites:
-                startActivity(new Intent(this, FavoritesActivity.class));
+                Intent intentRemove = new Intent(MainActivity.this, FavoritesActivity.class);
+                intentRemove.putExtra("particularFragment", "removeFavorites");
+                startActivity(intentRemove);
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==REQUEST_CODE){
+            if(resultCode==RESULT_OK){
+                editTextURL.setText(data.getStringExtra("SET_URL"));
+                webView.loadUrl(data.getStringExtra("SET_URL"));
+            }
         }
     }
 }

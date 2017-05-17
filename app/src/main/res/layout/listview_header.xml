@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1">
+
+    <TableRow
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TableSubject"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="제목"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TableURL"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="URL"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TableDate"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="등록일자"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+    </TableRow>
+
+</TableLayout>
